@@ -1,5 +1,5 @@
 {
-  "name": "arsenals-cra-template",
+  "name": "arsenals-cra-template-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
