@@ -4,7 +4,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start-dev": "nodemon --config \"./nodemon.json\"/"
+    "start-dev": "nodemon --config \"./nodemon.json\"/",
+    "build": "rm -rf ./build/ && tsc",
+    "start": "node build/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
