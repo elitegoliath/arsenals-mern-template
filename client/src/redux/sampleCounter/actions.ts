@@ -27,4 +27,4 @@ export type tActions = {
   setAsyncCounter: () => Promise<void>,
 }
 
-export const useUserActions = (): tActions => useActions(actions)
+export const useCounterActions = (): tActions => useActions(actions)

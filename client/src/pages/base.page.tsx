@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { styled } from 'baseui'
-import { SomeOtherPage } from './someOtherPage'
+import { SomePage } from './somePage'
 
 /**
  * This is a style component.
@@ -21,7 +21,7 @@ const BasePage = () => {
     <Router>
       <CenteredContent>
         <Switch>
-          <Route path='/' exact component={SomeOtherPage} />
+          <Route path='/' exact component={SomePage} />
         </Switch>
       </CenteredContent>
     </Router>

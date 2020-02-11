@@ -4,6 +4,7 @@ import { AppStore } from './redux'
 import { Client as Styletron } from 'styletron-engine-atomic'
 import { Provider as StyletronProvider } from 'styletron-react'
 import { DarkTheme, BaseProvider } from 'baseui'
+import { BasePage } from './pages'
 
 const styletronEngine = new Styletron()
 
@@ -12,7 +13,7 @@ const App = () => {
     <ReduxProvider store={AppStore}>
       <StyletronProvider value={styletronEngine}>
         <BaseProvider theme={DarkTheme}>
-          <div>Welcome to the jungle.</div>
+          <BasePage />
         </BaseProvider>
       </StyletronProvider>
     </ReduxProvider>
