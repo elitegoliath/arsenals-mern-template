@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { Sample } from '../../models'
+import { Sample, iSample } from '../../models'
 import { composeApiFunc } from '../routerUtils'
 
 const SamplesRouter = Router()
@@ -8,7 +8,7 @@ const SamplesRouter = Router()
  * Get all Samples.
  */
 SamplesRouter.route('/').get(composeApiFunc(async (_req: Request, _res: Response) => {
-  const foundSamples = await Sample.find()
+  const foundSamples: iSample[] = await Sample.find()
   return _res.json(foundSamples)
 }))
 
@@ -16,7 +16,11 @@ SamplesRouter.route('/').get(composeApiFunc(async (_req: Request, _res: Response
  * Get Sample by ID.
  */
 SamplesRouter.route('/:id').get(composeApiFunc(async (_req: Request, _res: Response) => {
-  const foundSample = await Sample.findById(_req.params.id)
+  const sampleId = _req.params.id
+  const foundSample: iSample | null = await Sample.findById(sampleId)
+
+  if (!foundSample) throw Error(`No Sample was found with id: ${sampleId}`)
+
   return _res.json(foundSample)
 }))
 
