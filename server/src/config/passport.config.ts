@@ -25,4 +25,21 @@ export default () => {
       return _done(_error)
     }
   }))
+
+  passport.serializeUser((_user: iUser, _done: tDoneCallback) => {
+    _done(null, _user.id)
+  })
+
+  passport.deserializeUser(async (_id: any, _done: tDoneCallback) => {
+    try {
+      // Depending on whether the user is coming from an external API or MongoDB, activate the appropriate code set.
+      const foundUser: iUser | null = await User.findById(_id)
+      // TODO: Insert Drupal API endpoint for get user by id here.
+
+      if (!foundUser) return _done(null, false, { message: 'Username not found when deserializing session.' })
+      return _done(null, foundUser)
+    } catch (_error) {
+      return _done(_error)
+    }
+  })
 }
