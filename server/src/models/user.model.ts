@@ -4,6 +4,8 @@ import { hashSync, genSaltSync, compareSync } from 'bcrypt'
 export interface iUser extends Document {
   username?: string,
   password?: string,
+  saltPassword: (_password: string) => string,
+  verifyPassword: (_password: string) => boolean,
 }
 
 export const userSchema: Schema = new Schema({

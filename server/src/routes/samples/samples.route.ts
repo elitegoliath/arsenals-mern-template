@@ -35,6 +35,9 @@ SamplesRouter.route('/:id').delete(composeApiFunc(async (_req: Request, _res: Re
 
 /**
  * Update Sample by ID.
+ * 
+ * Body: sampleName: string
+ *       sampleValue: number
  */
 SamplesRouter.route('/update/:id').post(composeApiFunc(async (_req: Request, _res: Response) => {
   const reqBody = _req.body
@@ -53,6 +56,9 @@ SamplesRouter.route('/update/:id').post(composeApiFunc(async (_req: Request, _re
 
 /**
  * Add new Sample.
+ * 
+ * Body: sampleName: string
+ *       sampleValue: number
  */
 SamplesRouter.route('/add').post(async (_req: Request, _res: Response) => {
   const newSample = new Sample({
