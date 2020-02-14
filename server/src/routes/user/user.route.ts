@@ -5,6 +5,7 @@ import { authenticate } from 'passport'
 const UserRouter = Router()
 
 UserRouter.route('/proxy/login').post(authenticate('local-proxy'), composeApiFunc(async (_req: Request, _res: Response) => {
+  console.log('Drupal User Login Success!!')
   // Redirect...
 }))
 

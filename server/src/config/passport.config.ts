@@ -15,4 +15,14 @@ export default () => {
       return _done(_error)
     }
   }))
+
+  passport.use('local-proxy', new LocalStrategy(async (_username: string, _password: string, _done: tDoneCallback) => {
+    try {
+      // Get user from Drupal.
+      // Decrypt password and compare it.
+      // Return user.
+    } catch (_error) {
+      return _done(_error)
+    }
+  }))
 }
