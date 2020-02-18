@@ -1,12 +1,12 @@
 import { apiUrl, tReduxAction } from '../store'
 import { useActions } from '../../hooks'
-import { tUser, User } from '../../models'
+import { User } from '../../models'
 
 export enum eUserActions {
   SET_AUTH_USER = 'SET_AUTH_USER',
 }
 
-const setAuthUserAction = (_user: tUser): tReduxAction<eUserActions> => ({ type: eUserActions.SET_AUTH_USER, payload: _user })
+const setAuthUserAction = (_user: User): tReduxAction<eUserActions> => ({ type: eUserActions.SET_AUTH_USER, payload: _user })
 
 const actions = {
   userSignUp: (_username: string, _password: string) => async (_dispatch: any): Promise<void> => {
@@ -22,7 +22,7 @@ const actions = {
       // TODO: If sign up fails, handle it.
       // TODO: Auto-sign-on on the server after new account creation.
       if (response.ok) _dispatch(setAuthUserAction(new User(resParsed.user)))
-    } catch(_error) {
+    } catch (_error) {
       throw new Error(`Issue with User Sign Up: ${_error}`)
     }
   },
@@ -30,7 +30,7 @@ const actions = {
 }
 
 type tActions = {
-  setAuthUser: (_user: tUser) => void
+  setAuthUser: (_user: User) => void
   userSignUp: (_username: string, _password: string) => Promise<void>
   userSignIn: () => Promise<void>
 }

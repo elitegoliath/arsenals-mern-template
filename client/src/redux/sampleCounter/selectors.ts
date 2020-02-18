@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux'
-import { tAppState, selectorComposer, tSelector, tSelectorMap } from '../store'
+import { tAppState, composeSelectors, tSelector, tSelectorMap } from '../store'
 import { tCounterState } from './reducer'
 
 const countSelector: tSelector = (_state: tAppState): number => _state.counter.count
 
-const counterSelectors: tSelectorMap = {
+const selectors: tSelectorMap = {
   count: countSelector,
 }
 
@@ -16,4 +16,4 @@ type tCounterSelectors = tCounterState & {
   // a new selector that concats them together.
 }
 
-export const useCounterSelectors: () => tCounterSelectors = () => useSelector(selectorComposer<tCounterSelectors>(counterSelectors))
+export const useCounterSelectors: () => tCounterSelectors = () => useSelector(composeSelectors<tCounterSelectors>(selectors))

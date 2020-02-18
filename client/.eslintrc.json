@@ -12,6 +12,7 @@
   },
   "rules": {
     "semi": "off",
+    "quotes": ["error", "single", { "avoidEscape": true }],
     "baseui/deprecated-theme-api": "warn",
     "baseui/deprecated-component-api": "warn",
     "baseui/no-deep-imports": "warn",
