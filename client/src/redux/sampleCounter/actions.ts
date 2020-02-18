@@ -1,16 +1,11 @@
 import { useActions } from '../../hooks/useActions'
+import { tReduxAction } from '../store'
 
 export enum eCounterActions {
   SET_COUNT = 'COUNTER_SET_COUNT',
 }
 
-// TODO: Make this type abstract.
-export type tCounterAction = {
-  type: eCounterActions
-  payload?: any
-}
-
-const setCounterAction = (_count: number): tCounterAction => ({ type: eCounterActions.SET_COUNT, payload: _count })
+const setCounterAction = (_count: number): tReduxAction<eCounterActions> => ({ type: eCounterActions.SET_COUNT, payload: _count })
 
 const actions = {
   setCounter: setCounterAction,
@@ -22,7 +17,7 @@ const actions = {
   },
 }
 
-export type tActions = {
+type tActions = {
   setCounter: (_count: number) => void,
   setAsyncCounter: () => Promise<void>,
 }

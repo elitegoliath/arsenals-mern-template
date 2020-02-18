@@ -27,12 +27,14 @@ PassportConfig()
 /**
  * Middleware.
  */
-app.use(cors())
+// TODO: Add rate limiting.
+// TODO: Add JWT.
+app.use(cors({ credentials: true }))
 app.use(cookieParser())
 app.use(express.json())
-app.use(session({ secret: process.env.SESSION_SECRET || 'some secret key here' }))
+// app.use(session({ secret: process.env.SESSION_SECRET || 'some secret key here' }))
 app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.session())
 
 /**
  * Connect to some database.

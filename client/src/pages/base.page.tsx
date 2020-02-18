@@ -1,7 +1,8 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import React, { ReactNode } from 'react'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { styled } from 'baseui'
 import { SomePage } from './somePage'
+import { LoginPage } from './login'
 
 /**
  * This is a style component.
@@ -16,12 +17,28 @@ const CenteredContent = styled('div', ({ $theme }) => ({
   color: $theme.colors.primary,
 }))
 
+interface iProtectedRouteProps {
+  isAuthenticated: boolean
+  path: string
+  component: ReactNode
+}
+
+const ProtectedRoute = (_props: iProtectedRouteProps) => (
+  <Route path={_props.path}>
+    {_props.isAuthenticated ? _props.component : <Redirect to='/' />}
+  </Route>
+)
+
 const BasePage = () => {
+  // TODO: Get if authenticated from state.
+  const isAuthenticated = false
+
   return (
     <Router>
       <CenteredContent>
         <Switch>
-          <Route path='/' exact component={SomePage} />
+          <Route path='/' exact component={LoginPage} />
+          <ProtectedRoute isAuthenticated path='/some-page' component={SomePage} />
         </Switch>
       </CenteredContent>
     </Router>

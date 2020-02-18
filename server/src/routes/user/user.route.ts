@@ -14,12 +14,14 @@ UserRouter.route('/login').post(authenticate('local'), composeApiFunc(async (_re
 }))
 
 UserRouter.route('/proxy/register').post(composeApiFunc(async (_req: Request, _res: Response) => {
+  // Encrypt password.
   // Register
   // Log in
   // Redirect
 }))
 
 UserRouter.route('/register').post(composeApiFunc(async (_req: Request, _res: Response) => {
+  // Encrypt password.
   // Register
   // Log in
   // Redirect

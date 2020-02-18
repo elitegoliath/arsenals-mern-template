@@ -2,6 +2,8 @@ import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { tCounterState, counterReducer } from './sampleCounter'
 
+export const apiUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:5000/' : ''
+
 export type tAppState = {
   counter: tCounterState,
 }
@@ -15,6 +17,11 @@ export default createStore(
   }),
   applyMiddleware(thunk)
 )
+
+export type tReduxAction<T> = {
+  type: T
+  payload?: any
+}
 
 /**
  * Enables dynamic typing of composed selectors.
