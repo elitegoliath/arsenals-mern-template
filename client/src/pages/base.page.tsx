@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { styled } from 'baseui'
 import { SomePage } from './somePage'
 import { LoginPage } from './login'
+import { useUserSelectors } from '../redux/user'
 
 /**
  * This is a style component.
@@ -30,15 +31,15 @@ const ProtectedRoute = (_props: iProtectedRouteProps) => (
 )
 
 const BasePage = () => {
-  // TODO: Get if authenticated from state.
-  const isAuthenticated = false
+  const { authUser } = useUserSelectors()
+  const isAuthed = authUser?.isAuthenticated || false
 
   return (
     <Router>
       <CenteredContent>
         <Switch>
           <Route path='/' exact component={LoginPage} />
-          <ProtectedRoute isAuthenticated path='/some-page' component={SomePage} />
+          <ProtectedRoute isAuthenticated={isAuthed} path='/some-page' component={SomePage} />
         </Switch>
       </CenteredContent>
     </Router>

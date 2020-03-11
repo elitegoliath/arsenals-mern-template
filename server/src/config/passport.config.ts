@@ -18,6 +18,8 @@ export default () => {
 
   passport.use('local-proxy', new LocalStrategy(async (_username: string, _password: string, _done: tDoneCallback) => {
     try {
+      console.log('Auth via local-proxy...')
+
       // Get user from Drupal.
       // Decrypt password and compare it.
       // Return user.
